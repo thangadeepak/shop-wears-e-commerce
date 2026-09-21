@@ -1,0 +1,59 @@
+/* ============================================
+   RegisterPage.module.css  (extends LoginPage pattern)
+   ============================================ */
+
+.page {
+  @apply flex-grow pt-24 md:pt-32 px-5 md:px-margin-desktop max-w-[1440px] mx-auto w-full pb-24 flex justify-center items-center;
+}
+
+.card {
+  @apply bg-white p-8 md:p-12 border border-on-surface max-w-md w-full shadow-[8px_8px_0px_0px_rgba(27,27,28,1)];
+}
+
+.cardHeader {
+  @apply text-center mb-8;
+}
+
+.headerIcon {
+  @apply text-primary mb-2;
+}
+
+.cardTitle {
+  @apply font-display text-3xl text-on-surface uppercase;
+}
+
+.cardSubtitle {
+  @apply font-body text-xs text-on-surface-variant uppercase tracking-wider mt-1;
+}
+
+.errorBox {
+  @apply bg-primary/10 border border-primary text-primary p-3 font-label-bold text-xs uppercase mb-6 text-center;
+}
+
+.form {
+  @apply flex flex-col gap-5;
+}
+
+.fieldGroup {
+  @apply flex flex-col gap-1;
+}
+
+.label {
+  @apply font-label-bold text-xs text-on-surface-variant uppercase block mb-1;
+}
+
+.input {
+  @apply w-full bg-transparent border-b border-on-surface py-3 font-body text-base text-on-surface outline-none focus:border-primary transition-colors placeholder:text-on-surface-variant/60;
+}
+
+.submitBtn {
+  @apply w-full bg-brand-orange text-white py-4 uppercase font-label-bold text-sm tracking-widest hover:bg-primary-container transition-colors mt-2 disabled:opacity-60 disabled:cursor-not-allowed;
+}
+
+.footer {
+  @apply text-center mt-8 pt-6 border-t border-outline-variant font-label-bold text-xs text-on-surface-variant uppercase;
+}
+
+.footerLink {
+  @apply text-primary underline font-bold ml-1 hover:text-primary-container transition-colors;
+}

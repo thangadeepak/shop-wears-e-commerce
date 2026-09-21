@@ -1,0 +1,198 @@
+/* ============================================
+   CheckoutPage.module.css
+   ============================================ */
+
+.page {
+  @apply flex-grow pt-24 md:pt-32 px-5 md:px-margin-desktop max-w-[1440px] mx-auto w-full pb-24;
+}
+
+/* Header */
+.pageHeader {
+  @apply mb-12 border-b-2 border-on-surface pb-6 flex justify-between items-end;
+}
+
+.pageTitle {
+  @apply font-display text-[48px] md:text-[72px] text-on-surface uppercase tracking-tight leading-none;
+}
+
+.secureLabel {
+  @apply hidden sm:flex items-center gap-2 text-on-surface-variant font-label-bold text-xs;
+}
+
+.secureIcon {
+  @apply text-primary;
+}
+
+/* Layout */
+.form {
+  @apply grid grid-cols-1 lg:grid-cols-12 gap-8 items-start;
+}
+
+/* Left column */
+.leftCol {
+  @apply lg:col-span-8 flex flex-col gap-12;
+}
+
+/* Form sections */
+.section {
+  @apply bg-white p-6 border border-on-surface flex flex-col gap-6;
+}
+
+.sectionTitle {
+  @apply font-label-bold text-sm text-on-surface uppercase tracking-widest border-b border-outline-variant pb-3 flex items-center justify-between;
+}
+
+.sectionIcon {
+  @apply text-lg text-primary;
+}
+
+.fieldGrid2 {
+  @apply grid grid-cols-1 md:grid-cols-2 gap-6;
+}
+
+.fieldGrid22 {
+  @apply grid grid-cols-2 gap-4;
+}
+
+.fieldGroup {
+  @apply flex flex-col;
+}
+
+.fieldGroupFull {
+  @apply flex flex-col md:col-span-2;
+}
+
+.fieldLabel {
+  @apply font-label-bold text-xs text-on-surface-variant mb-1 uppercase;
+}
+
+.fieldInput {
+  @apply w-full bg-transparent border-b border-on-surface py-3 font-body text-base text-on-surface outline-none focus:border-primary transition-colors placeholder:text-on-surface-variant/60;
+}
+
+/* Payment option */
+.paymentOption {
+  @apply flex items-center p-4 cursor-pointer transition-all border border-outline hover:bg-surface-container-low;
+}
+
+.paymentOptionActive {
+  @apply border-2 border-primary bg-primary/5;
+}
+
+.paymentRadio {
+  @apply text-primary h-5 w-5;
+}
+
+.paymentLabel {
+  @apply ml-4 font-body text-base text-on-surface font-bold uppercase;
+}
+
+.paymentIconWrap {
+  @apply ml-auto flex gap-2;
+}
+
+.cardFields {
+  @apply grid grid-cols-1 md:grid-cols-2 gap-6 mt-2 pt-4 border-t border-outline-variant;
+}
+
+/* ── Right column: summary ── */
+.rightCol {
+  @apply lg:col-span-4 sticky top-28;
+}
+
+.summaryCard {
+  @apply bg-surface-container-high p-8 border border-on-surface flex flex-col gap-6 shadow-[8px_8px_0px_0px_rgba(27,27,28,1)];
+}
+
+.summaryTitle {
+  @apply font-display text-2xl text-on-surface uppercase border-b-2 border-on-surface pb-4;
+}
+
+.summaryLines {
+  @apply flex flex-col gap-3 font-body text-base text-on-surface;
+}
+
+.summaryLine {
+  @apply flex justify-between;
+}
+
+.summaryLineLabel {
+  @apply text-on-surface-variant;
+}
+
+.summaryLineValue {
+  @apply font-bold;
+}
+
+.summaryLineTax {
+  @apply flex justify-between text-primary;
+}
+
+.totalRow {
+  @apply border-t-2 border-on-surface pt-4;
+}
+
+.totalInner {
+  @apply flex justify-between items-end mb-6;
+}
+
+.totalLabel {
+  @apply font-body text-lg text-on-surface uppercase font-bold;
+}
+
+.totalAmount {
+  @apply font-price-display text-3xl text-on-surface;
+}
+
+.placeOrderBtn {
+  @apply w-full bg-brand-orange text-white py-5 text-sm uppercase font-label-bold tracking-widest flex justify-between items-center hover:bg-primary-container transition-colors px-6 disabled:opacity-60 disabled:cursor-not-allowed;
+}
+
+.placeOrderArrow {
+  @apply transform transition-transform;
+}
+
+.placeOrderBtn:hover .placeOrderArrow {
+  @apply translate-x-2;
+}
+
+/* ── Order Complete ── */
+.successWrap {
+  @apply flex-grow pt-24 md:pt-32 px-5 md:px-margin-desktop max-w-[1440px] mx-auto w-full pb-24 text-center;
+}
+
+.successCard {
+  @apply bg-surface-container-low p-12 border border-on-surface max-w-xl mx-auto flex flex-col items-center;
+}
+
+.successIcon {
+  @apply w-16 h-16 bg-primary text-white flex items-center justify-center mb-6;
+}
+
+.successTitle {
+  @apply font-display text-3xl md:text-4xl text-on-surface mb-2 uppercase;
+}
+
+.successText {
+  @apply font-body text-on-surface-variant mb-6;
+}
+
+.successOrderRef {
+  @apply text-primary;
+}
+
+.successStatus {
+  @apply w-full bg-white p-4 border border-on-surface mb-8 font-label-bold text-xs uppercase text-on-surface flex justify-around;
+}
+
+.successStatusValue {
+  @apply text-primary;
+}
+
+.successPrimaryBtn {
+  @apply bg-brand-orange text-white px-8 py-4 w-full mb-3 uppercase font-label-bold text-sm tracking-widest hover:bg-primary-container transition-colors;
+}
+
+.successSecondaryBtn {
+  @apply bg-transparent border border-on-surface text-on-surface px-8 py-4 w-full uppercase font-label-bold text-sm tracking-widest hover:bg-on-surface hover:text-white transition-colors;
+}

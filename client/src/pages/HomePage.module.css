@@ -1,0 +1,185 @@
+/* ============================================
+   HomePage.module.css
+   ============================================ */
+
+/* ── Categories Section ── */
+.categoriesSection {
+  @apply mt-section-gap px-5 md:px-margin-desktop max-w-[1440px] mx-auto;
+}
+
+.sectionHeader {
+  @apply flex justify-between items-end mb-12 border-b border-on-surface pb-4;
+}
+
+.sectionTitle {
+  @apply font-display text-headline-md text-on-surface;
+}
+
+.sectionViewAll {
+  @apply font-label-bold text-label-bold text-on-surface hover:text-brand-orange uppercase border-b border-transparent hover:border-brand-orange pb-1 transition-all;
+}
+
+.bentoGrid {
+  @apply grid grid-cols-1 md:grid-cols-12 gap-gutter;
+}
+
+/* Large bento tile */
+.bentoLarge {
+  @apply md:col-span-8 relative h-[500px] overflow-hidden bg-surface-variant cursor-pointer border border-on-surface;
+}
+
+.bentoBg {
+  @apply bg-cover bg-center w-full h-full transition-transform duration-700;
+}
+
+.bentoOverlay {
+  @apply absolute inset-0 bg-black/10 transition-colors;
+}
+
+.bentoLarge:hover .bentoBg,
+.bentoSmall:hover .bentoBg {
+  @apply scale-105;
+}
+
+.bentoLarge:hover .bentoOverlay,
+.bentoSmall:hover .bentoOverlay {
+  @apply bg-black/30;
+}
+
+.bentoLabel {
+  @apply absolute bottom-0 left-0 p-8 w-full flex justify-between items-end;
+}
+
+.bentoTitle {
+  @apply font-display text-headline-md text-white;
+}
+
+.bentoShopBtn {
+  @apply bg-white text-on-background px-4 py-2 font-label-bold text-label-bold uppercase;
+}
+
+/* Small bento stack */
+.bentoStack {
+  @apply md:col-span-4 flex flex-col gap-gutter;
+}
+
+.bentoSmall {
+  @apply flex-1 relative overflow-hidden bg-surface-variant cursor-pointer border border-on-surface min-h-[238px];
+}
+
+.bentoSmallLabel {
+  @apply absolute bottom-0 left-0 p-6 w-full flex justify-between items-end;
+}
+
+.bentoSmallTitle {
+  @apply font-display text-2xl text-white;
+}
+
+/* ── New Arrivals ── */
+.arrivalsSection {
+  @apply mt-section-gap px-5 md:px-margin-desktop max-w-[1440px] mx-auto;
+}
+
+.arrivalsGrid {
+  @apply grid grid-cols-2 md:grid-cols-4 gap-x-gutter gap-y-12;
+}
+
+/* Skeleton loader */
+.skeleton {
+  @apply flex flex-col gap-4;
+}
+
+.skeletonImg {
+  @apply aspect-[3/4] bg-surface-container-high animate-pulse;
+}
+
+.skeletonLine1 {
+  @apply h-4 bg-surface-container-high animate-pulse w-3/4;
+}
+
+.skeletonLine2 {
+  @apply h-3 bg-surface-container-high animate-pulse w-1/2;
+}
+
+/* ── Limited Drop Banner ── */
+.dropBanner {
+  @apply mt-section-gap w-full bg-accent-dark text-white py-8 border-y-2 border-brand-orange relative overflow-hidden;
+}
+
+.dropBannerBg {
+  @apply absolute inset-0 opacity-20 pointer-events-none;
+}
+
+.dropBannerInner {
+  @apply max-w-[1440px] mx-auto px-5 md:px-margin-desktop flex flex-col md:flex-row justify-between items-center relative z-10 gap-6;
+}
+
+.dropLeft {
+  @apply flex items-center gap-4;
+}
+
+.dropPulse {
+  @apply w-3 h-3 bg-brand-orange rounded-full animate-pulse;
+}
+
+.dropTitle {
+  @apply font-display text-headline-md uppercase tracking-wide text-brand-orange;
+}
+
+.dropSub {
+  @apply font-body-lg text-body-lg hidden md:inline ml-4;
+}
+
+.dropCta {
+  @apply bg-brand-orange text-white px-8 py-4 uppercase font-label-bold text-label-bold tracking-widest border border-brand-orange hover:bg-white hover:text-brand-orange transition-colors whitespace-nowrap w-full md:w-auto text-center;
+}
+
+/* Countdown */
+.countdown {
+  @apply flex gap-3;
+}
+
+.countUnit {
+  @apply bg-surface-variant text-on-surface px-4 py-2 font-display text-2xl font-bold min-w-[60px] text-center border border-brand-orange;
+}
+
+.countLabel {
+  @apply text-xs block font-body uppercase;
+}
+
+/* ── Newsletter ── */
+.newsletter {
+  @apply w-full bg-accent-dark border-b border-outline py-20 px-5 md:px-margin-desktop;
+}
+
+.newsletterInner {
+  @apply max-w-2xl mx-auto text-center flex flex-col items-center;
+}
+
+.newsletterIcon {
+  @apply text-brand-orange mb-6;
+}
+
+.newsletterTitle {
+  @apply font-display text-[48px] md:text-[72px] text-white mb-4 uppercase leading-none;
+}
+
+.newsletterSub {
+  @apply font-body-lg text-body-lg text-surface-container-low mb-8;
+}
+
+.newsletterForm {
+  @apply w-full flex flex-col sm:flex-row gap-4;
+}
+
+.newsletterInputWrap {
+  @apply flex-1 relative;
+}
+
+.newsletterInput {
+  @apply w-full bg-transparent border-b border-outline-variant focus:border-brand-orange focus:border-b-2 outline-none text-white placeholder-surface-container-low font-body py-4 px-2 transition-colors;
+}
+
+.newsletterBtn {
+  @apply bg-white text-on-background px-8 py-4 uppercase font-label-bold text-label-bold tracking-widest border border-white hover:bg-surface-variant transition-colors mt-4 sm:mt-0;
+}

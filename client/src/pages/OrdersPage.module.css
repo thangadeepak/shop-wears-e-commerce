@@ -1,0 +1,198 @@
+/* ============================================
+   OrdersPage.module.css
+   ============================================ */
+
+.page {
+  @apply flex-grow pt-24 md:pt-32 px-5 md:px-margin-desktop max-w-[1440px] mx-auto w-full pb-24;
+}
+
+/* Header */
+.pageHeader {
+  @apply mb-12 border-b-2 border-on-surface pb-6;
+}
+
+.pageTitle {
+  @apply font-display text-[48px] md:text-[72px] text-on-surface uppercase tracking-tight leading-none;
+}
+
+.pageSub {
+  @apply font-body text-sm text-on-surface-variant uppercase tracking-wider mt-1;
+}
+
+/* Layout */
+.layout {
+  @apply grid grid-cols-1 md:grid-cols-12 gap-8 items-start;
+}
+
+/* ── Sidebar ── */
+.sidebar {
+  @apply md:col-span-3 border border-on-surface bg-surface-container-low p-4 flex flex-col gap-2;
+}
+
+.sidebarBtn {
+  @apply flex items-center px-4 py-3 font-label-bold text-xs uppercase transition-all text-left text-on-surface hover:bg-surface-container-high;
+}
+
+.sidebarBtnActive {
+  @apply bg-on-surface text-white;
+}
+
+.sidebarBtnActiveOrders {
+  @apply bg-primary text-white;
+}
+
+.sidebarIcon {
+  @apply text-lg mr-3;
+}
+
+/* ── Content Panel ── */
+.content {
+  @apply md:col-span-9 flex flex-col gap-8;
+}
+
+.panelTitle {
+  @apply font-display text-2xl text-on-surface uppercase;
+}
+
+/* Loading */
+.loadingText {
+  @apply text-center py-16 font-label-bold text-on-surface-variant;
+}
+
+/* ── Order Card ── */
+.orderCard {
+  @apply bg-white border border-on-surface p-6 flex flex-col gap-6;
+}
+
+.orderCardHeader {
+  @apply flex flex-wrap justify-between items-center gap-4 border-b border-on-surface pb-4;
+}
+
+.orderIdLabel {
+  @apply font-label-bold text-[10px] text-on-surface-variant block;
+}
+
+.orderId {
+  @apply font-display text-xl text-primary;
+}
+
+.orderDateLabel {
+  @apply font-label-bold text-[10px] text-on-surface-variant block;
+}
+
+.orderDate {
+  @apply font-body text-sm font-bold text-on-surface;
+}
+
+.orderTotalLabel {
+  @apply font-label-bold text-[10px] text-on-surface-variant block;
+}
+
+.orderTotal {
+  @apply font-price-display text-xl text-on-surface;
+}
+
+.orderStatusBadge {
+  @apply inline-flex items-center gap-1 font-label-bold text-xs bg-primary/10 text-primary px-3 py-1 border border-primary;
+}
+
+.statusPulse {
+  @apply w-2 h-2 rounded-full bg-primary animate-pulse;
+}
+
+/* Tracker */
+.tracker {
+  @apply bg-surface-container-low p-4 border border-outline;
+}
+
+.trackerLabel {
+  @apply font-label-bold text-[11px] text-on-surface-variant mb-2 uppercase;
+}
+
+.trackerBar {
+  @apply w-full bg-surface-container-high h-2 relative overflow-hidden border border-outline;
+}
+
+.trackerFill {
+  @apply bg-primary h-full transition-all duration-500;
+}
+
+.trackerSteps {
+  @apply flex justify-between font-label-bold text-[10px] text-on-surface mt-2 uppercase;
+}
+
+.trackerStepActive {
+  @apply text-primary font-bold;
+}
+
+/* Order Items */
+.orderItems {
+  @apply flex flex-col gap-4;
+}
+
+.orderItem {
+  @apply flex gap-4 items-center bg-surface-container-low p-3 border border-outline;
+}
+
+.orderItemImage {
+  @apply w-16 h-20 object-cover bg-surface-container-high border border-outline;
+}
+
+.orderItemInfo {
+  @apply flex-grow;
+}
+
+.orderItemTitle {
+  @apply font-display text-lg text-on-surface uppercase;
+}
+
+.orderItemMeta {
+  @apply font-body text-xs text-on-surface-variant;
+}
+
+.orderItemPrice {
+  @apply font-price-display text-lg text-on-surface;
+}
+
+/* Shipping info */
+.orderAddress {
+  @apply font-body text-xs text-on-surface-variant pt-2 border-t border-outline-variant;
+}
+
+.orderAddressLabel {
+  @apply font-label-bold text-on-surface;
+}
+
+/* ── Profile Panel ── */
+.profilePanel {
+  @apply bg-white border border-on-surface p-8 flex flex-col gap-6;
+}
+
+.profilePanelTitle {
+  @apply font-display text-2xl text-on-surface uppercase border-b border-on-surface pb-4;
+}
+
+.profileGrid {
+  @apply grid grid-cols-1 md:grid-cols-2 gap-6 font-body;
+}
+
+.profileFieldLabel {
+  @apply font-label-bold text-xs text-on-surface-variant uppercase block mb-1;
+}
+
+.profileInput {
+  @apply w-full bg-transparent border-b border-on-surface py-2 font-body text-on-surface outline-none font-bold;
+}
+
+/* ── Addresses Panel ── */
+.addressPanel {
+  @apply bg-white border border-on-surface p-8 flex flex-col gap-6;
+}
+
+.addressCard {
+  @apply bg-surface-container-low p-4 border border-outline font-body text-sm;
+}
+
+.addressType {
+  @apply font-bold text-primary uppercase mb-1;
+}

@@ -1,0 +1,98 @@
+/* ============================================
+   ProductCard.module.css
+   ============================================ */
+
+.card {
+  @apply relative flex flex-col cursor-pointer;
+}
+
+/* ── Image Area ── */
+.imageWrapper {
+  @apply relative w-full aspect-[3/4] bg-surface-container-high overflow-hidden border border-outline/20;
+}
+
+.badges {
+  @apply absolute top-4 left-4 z-10 flex flex-col gap-2;
+}
+
+.badgeNew {
+  @apply bg-surface text-on-surface px-3 py-1 font-label-bold text-[10px] uppercase tracking-widest border border-outline;
+}
+
+.badgeSale {
+  @apply bg-brand-orange text-white px-3 py-1 font-label-bold text-[10px] uppercase tracking-widest;
+}
+
+.wishlistBtn {
+  @apply absolute top-4 right-4 z-10 text-on-surface bg-surface/50 p-2 backdrop-blur hover:text-primary hover:bg-surface transition-all;
+}
+
+.mainImg {
+  @apply w-full h-full object-cover transition-transform duration-700;
+}
+
+.hoverImg {
+  @apply w-full h-full object-cover transition-transform duration-700;
+}
+
+/* Quick Add Overlay */
+.quickAdd {
+  @apply absolute bottom-0 left-0 w-full p-4 translate-y-full opacity-0 transition-all duration-300 ease-out bg-surface/90 backdrop-blur border-t border-outline;
+}
+
+.card:hover .mainImg {
+  @apply scale-105;
+}
+
+.card:hover .quickAdd {
+  @apply translate-y-0 opacity-100;
+}
+
+.quickAddLabel {
+  @apply text-center font-label-bold text-[12px] uppercase mb-3 text-on-surface;
+}
+
+.quickAddSizes {
+  @apply flex justify-between gap-2;
+}
+
+.sizeBtn {
+  @apply flex-1 border border-outline py-2 hover:bg-primary hover:text-on-primary hover:border-primary transition-colors font-label-bold text-sm;
+}
+
+/* ── Product Info ── */
+.info {
+  @apply pt-4 flex flex-col gap-1;
+}
+
+.infoRow {
+  @apply flex justify-between items-start;
+}
+
+.title {
+  @apply font-body text-base font-bold uppercase text-on-surface leading-tight flex-1 mr-2;
+}
+
+.priceCol {
+  @apply flex flex-col items-end shrink-0;
+}
+
+.priceOriginal {
+  @apply font-body text-sm text-on-surface-variant line-through;
+}
+
+.price {
+  @apply font-price-display text-[18px] text-on-surface;
+}
+
+.category {
+  @apply font-body text-sm text-on-surface-variant uppercase;
+}
+
+.rating {
+  @apply flex items-center gap-1 mt-1;
+}
+
+.ratingText {
+  @apply font-body text-xs text-on-surface-variant;
+}

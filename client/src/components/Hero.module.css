@@ -1,0 +1,47 @@
+/* ============================================
+   Hero.module.css
+   ============================================ */
+
+.section {
+  @apply relative h-[870px] min-h-[600px] w-full flex items-end pb-20 px-5 md:px-margin-desktop bg-surface-variant overflow-hidden;
+}
+
+.bgWrapper {
+  @apply absolute inset-0 z-0;
+}
+
+.bgImage {
+  @apply bg-cover bg-center w-full h-full;
+}
+
+.bgOverlay {
+  @apply absolute inset-0 bg-gradient-to-t from-on-background/80 via-transparent to-transparent;
+}
+
+.content {
+  @apply relative z-10 max-w-[1440px] mx-auto w-full grid grid-cols-1 md:grid-cols-12 gap-gutter;
+}
+
+.textBlock {
+  @apply md:col-span-8 lg:col-span-10 text-white;
+}
+
+.headline {
+  @apply font-display text-[48px] md:text-[72px] lg:text-[120px] leading-none tracking-tighter text-white mb-4 drop-shadow-lg uppercase;
+}
+
+.subtext {
+  @apply font-body-lg text-body-lg text-surface-container-low max-w-xl mb-8;
+}
+
+.ctaRow {
+  @apply flex flex-wrap gap-4;
+}
+
+.ctaPrimary {
+  @apply bg-brand-orange text-white px-10 py-5 uppercase font-label-bold text-label-bold tracking-widest border border-brand-orange hover:bg-primary-container transition-colors;
+}
+
+.ctaSecondary {
+  @apply bg-transparent text-white px-10 py-5 uppercase font-label-bold text-label-bold tracking-widest border border-white hover:bg-white hover:text-on-background transition-colors;
+}
