@@ -4,11 +4,13 @@ import axios from 'axios';
 import { sampleProducts } from '../data/sampleProducts';
 import { useCart } from '../context/CartContext';
 import styles from './ProductDetailPage.module.css';
+import { formatINR } from '../utils/currency';
+import ProductCard from '../components/ProductCard';
 
 const ProductDetailPage = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-  const { addToCart, cartItems } = useCart();
+  const { addToCart, cartItems, wishlistItems, toggleWishlist } = useCart();
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
 
@@ -18,6 +20,9 @@ const ProductDetailPage = () => {
   const [quantity, setQuantity] = useState(1);
   const [sizeModalOpen, setSizeModalOpen] = useState(false);
   const [openAccordion, setOpenAccordion] = useState(null);
+  const [pincode, setPincode] = useState('');
+  const [deliveryMessage, setDeliveryMessage] = useState('');
+  const [fitFeedback, setFitFeedback] = useState('');
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -42,7 +47,7 @@ const ProductDetailPage = () => {
   }, [id]);
 
   if (loading) {
-    return <div className={styles.loadingWrap}>LOADING PRODUCT SPECIFICATION...</div>;
+    return <div className={styles.loadingWrap}>Finding your little favourite…</div>;
   }
 
   if (!product) {
@@ -59,11 +64,9 @@ const ProductDetailPage = () => {
     : [product.image, product.image, product.image, product.image];
 
   const isInCart = cartItems.some(item => item._id === product._id || item.slug === product.slug);
+  const wishlisted = wishlistItems.some(item => (item._id || item.slug) === (product._id || product.slug));
 
-  const formattedPrice = new Intl.NumberFormat('en-US', {
-    style: 'currency',
-    currency: 'USD',
-  }).format(product.discountPrice || product.price);
+  const formattedPrice = formatINR(product.discountPrice || product.price);
 
   const toggleAccordion = (section) =>
     setOpenAccordion(openAccordion === section ? null : section);
@@ -73,17 +76,20 @@ const ProductDetailPage = () => {
   };
 
   const colorOptions = [
-    { label: 'Onyx Black', hex: '#1A1A1A' },
-    { label: 'Concrete Grey', hex: '#E5E5E5' },
-    { label: 'Kinetic Orange', hex: '#FF4D00' },
+    { label: 'Lavender', hex: '#A78BFA' },
+    { label: 'Plum', hex: '#4C1D95' },
+    { label: 'White', hex: '#ffffff' },
   ];
+  const kidsSizes = ['0-2Y', '2-4Y', '4-6Y', '6-8Y', '8-10Y', '10-14Y'];
+  const discountPercent = product.price > (product.discountPrice || product.price) ? Math.round((product.price - product.discountPrice) / product.price * 100) : 0;
+  const buyNow = () => { handleAddToCart(); navigate('/cart'); };
 
   return (
     <main className={styles.page}>
       {/* Breadcrumb */}
       <div className={styles.breadcrumb}>
         <Link className={styles.breadcrumbLink} to="/">Home</Link> /
-        <Link className={styles.breadcrumbLink} to="/shop">Collection</Link> /
+        <Link className={styles.breadcrumbLink} to="/shop">Boys clothing</Link> /
         <span className="text-on-surface">{product.title}</span>
       </div>
 
@@ -131,6 +137,7 @@ const ProductDetailPage = () => {
 
           <div className={styles.priceRow}>
             <div className={styles.price}>{formattedPrice}</div>
+            {discountPercent > 0 && <><del>{formatINR(product.price)}</del><span className={styles.discount}>{discountPercent}% OFF</span></>}
             <div className={styles.ratingRow}>
               {[...Array(4)].map((_, i) => (
                 <span key={i} className={`material-symbols-outlined fill ${styles.ratingIcon}`}>star</span>
@@ -141,6 +148,8 @@ const ProductDetailPage = () => {
           </div>
 
           <p className={styles.description}>{product.description}</p>
+          <p className={styles.taxNote}>Inclusive of all taxes · Free delivery above ₹499</p>
+          <div className={styles.offerBox}><strong>Little Namma offer</strong><span>Free delivery on orders above ₹499 · COD available on eligible pincodes</span><span>Inclusive of all taxes. No hidden charges at checkout.</span></div>
 
           {/* Color */}
           <div className={styles.colorSection}>
@@ -173,7 +182,7 @@ const ProductDetailPage = () => {
               </button>
             </div>
             <div className={styles.sizeGrid}>
-              {['S', 'M', 'L', 'XL'].map((sz) => (
+              {kidsSizes.map((sz) => (
                 <button
                   key={sz}
                   onClick={() => setSelectedSize(sz)}
@@ -184,6 +193,12 @@ const ProductDetailPage = () => {
               ))}
             </div>
           </div>
+
+          <form className={styles.deliveryCheck} onSubmit={e=>{e.preventDefault();setDeliveryMessage(/^\d{6}$/.test(pincode)?'Delivery in 3–7 days · COD available':'Enter a valid 6-digit pincode');}}>
+            <label htmlFor="delivery-pincode">Check delivery & COD availability</label>
+            <div><input id="delivery-pincode" value={pincode} onChange={e=>setPincode(e.target.value.replace(/\D/g,'').slice(0,6))} placeholder="Enter 6-digit pincode" inputMode="numeric"/><button type="submit">Check</button></div>
+            {deliveryMessage&&<small>{deliveryMessage}</small>}
+          </form>
 
           {/* Actions */}
           <div className={styles.actions}>
@@ -206,10 +221,11 @@ const ProductDetailPage = () => {
                 </span>
                 {isInCart ? 'UPDATE IN CART' : 'ADD TO CART'}
               </button>
+              <button onClick={buyNow} className={styles.buyNowBtn}>BUY NOW</button>
             </div>
 
-            <button className={styles.wishlistBtn}>
-              <span className="material-symbols-outlined text-xl">favorite</span> ADD TO WISHLIST
+            <button className={styles.wishlistBtn} onClick={()=>toggleWishlist(product)}>
+              <span className="material-symbols-outlined text-xl">favorite</span> {wishlisted?'SAVED TO WISHLIST':'ADD TO WISHLIST'}
             </button>
           </div>
 
@@ -221,21 +237,21 @@ const ProductDetailPage = () => {
                 title: 'DETAILS',
                 content: (
                   <div className={styles.accordionContent}>
-                    <p>- 100% Premium Heavyweight Cotton (240gsm)</p>
-                    <p>- Dropped shoulders for an oversized, boxy fit</p>
-                    <p>- Thick ribbed crewneck collar</p>
-                    <p>- Pre-shrunk to minimize shrinkage</p>
-                    <p>- Printed care label for ultimate skin comfort</p>
+                    <p>- Fabric: {product.fabric || 'Soft cotton'}</p>
+                    <p>- Suggested age: {product.age || '1–14 years'}</p>
+                    <p>- Easy, comfortable fit for everyday play</p>
+                    <p>- Gentle machine wash with like colours</p>
+                    <p>- Soft finish for little ones’ comfort</p>
                   </div>
                 ),
               },
               {
                 key: 'shipping',
-                title: 'SHIPPING & RETURNS',
+                title: 'DELIVERY & RETURNS',
                 content: (
                   <div className={styles.accordionContent}>
-                    <p>Standard shipping arrives within 3-5 business days.</p>
-                    <p>Free returns within 30 days of delivery on unworn items.</p>
+                    <p>Delivery usually takes 3–7 business days across India.</p>
+                    <p>Free shipping above ₹499. Eligible items can be returned within 7 days.</p>
                   </div>
                 ),
               },
@@ -254,6 +270,12 @@ const ProductDetailPage = () => {
         </div>
       </div>
 
+      <section className={styles.recommendations}>
+        <div className={styles.recommendationHeader}><span>MORE LITTLE FAVOURITES</span><h2>You may also love</h2></div>
+        <div className={styles.recommendationGrid}>{sampleProducts.filter(item=>item._id!==product._id).slice(0,4).map(item=><ProductCard key={item._id} product={item}/>)}</div>
+      </section>
+      <section className={styles.fitFeedback}><h3>How does the fit feel?</h3><div>{['True to size','Runs small','Runs large'].map(feedback=><button className={fitFeedback===feedback?styles.fitSelected:''} key={feedback} onClick={()=>setFitFeedback(feedback)}>{feedback}</button>)}</div></section>
+
       {/* Size Guide Modal */}
       {sizeModalOpen && (
         <div className={styles.modalOverlay}>
@@ -261,23 +283,25 @@ const ProductDetailPage = () => {
             <button onClick={() => setSizeModalOpen(false)} className={styles.modalClose}>
               <span className="material-symbols-outlined text-2xl">close</span>
             </button>
-            <h3 className={styles.modalTitle}>OVERSIZED SIZE MATRIX</h3>
+            <h3 className={styles.modalTitle}>BOYS SIZE GUIDE</h3>
             <p className={styles.modalText}>
-              Our streetwear garments are cut for a boxy, dropped-shoulder fit. If you prefer a regular tailored fit, order one size down.
+              Choose by age, then check your child’s height and chest. If between sizes, choose the larger size for more growing room.
             </p>
             <table className={styles.sizeTable}>
               <thead className={styles.sizeTableHead}>
                 <tr>
-                  <th className={styles.sizeTableTh}>SIZE</th>
-                  <th className={styles.sizeTableTh}>CHEST (IN)</th>
-                  <th className={styles.sizeTableTh}>LENGTH (IN)</th>
+                  <th className={styles.sizeTableTh}>AGE</th>
+                  <th className={styles.sizeTableTh}>HEIGHT (CM)</th>
+                  <th className={styles.sizeTableTh}>CHEST (CM)</th>
                 </tr>
               </thead>
               <tbody className={styles.sizeTableBody}>
-                <tr><td className={styles.sizeTableTdBold}>S</td><td className={styles.sizeTableTd}>42 - 44</td><td className={styles.sizeTableTd}>28</td></tr>
-                <tr><td className={styles.sizeTableTdBold}>M</td><td className={styles.sizeTableTd}>44 - 46</td><td className={styles.sizeTableTd}>29</td></tr>
-                <tr className={styles.sizeTableRowHighlight}><td className={styles.sizeTableTdHighlight}>L</td><td className={styles.sizeTableTd}>46 - 48</td><td className={styles.sizeTableTd}>30</td></tr>
-                <tr><td className={styles.sizeTableTdBold}>XL</td><td className={styles.sizeTableTd}>48 - 50</td><td className={styles.sizeTableTd}>31</td></tr>
+                <tr><td className={styles.sizeTableTdBold}>0–2Y</td><td className={styles.sizeTableTd}>80–92</td><td className={styles.sizeTableTd}>50–54</td></tr>
+                <tr><td className={styles.sizeTableTdBold}>2–4Y</td><td className={styles.sizeTableTd}>92–104</td><td className={styles.sizeTableTd}>54–58</td></tr>
+                <tr className={styles.sizeTableRowHighlight}><td className={styles.sizeTableTdHighlight}>4–6Y</td><td className={styles.sizeTableTd}>104–116</td><td className={styles.sizeTableTd}>58–62</td></tr>
+                <tr><td className={styles.sizeTableTdBold}>6–8Y</td><td className={styles.sizeTableTd}>116–128</td><td className={styles.sizeTableTd}>62–66</td></tr>
+                <tr><td className={styles.sizeTableTdBold}>8–10Y</td><td className={styles.sizeTableTd}>128–140</td><td className={styles.sizeTableTd}>66–72</td></tr>
+                <tr><td className={styles.sizeTableTdBold}>10–14Y</td><td className={styles.sizeTableTd}>140–164</td><td className={styles.sizeTableTd}>72–82</td></tr>
               </tbody>
             </table>
             <button onClick={() => setSizeModalOpen(false)} className={styles.modalCloseBtn}>

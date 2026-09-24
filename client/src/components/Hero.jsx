@@ -1,40 +1,24 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { ArrowRight, Sparkles } from 'lucide-react';
 import styles from './Hero.module.css';
 
-const Hero = () => {
-  return (
-    <section className={styles.section}>
-      {/* Background Image */}
-      <div className={styles.bgWrapper}>
-        <div
-          className={styles.bgImage}
-          style={{
-            backgroundImage: `url('https://lh3.googleusercontent.com/aida-public/AB6AXuBLnbZQJGTMQfMsGxr9tp90nTXc6P8FpD6Wj3txlF7NuBc5ITW2zeVqNqeSr9Z7paBgtWg894v2JUyTH3o6Sy4GFrdCPouPBjIhyRI25sxISKH_Nxmw-L9dGO1s6CNdKpyNc8tbotnifsruOMyXgDDzsv-hqgXI4AnYg3iy6E3jAB7OXlOjnye6exaPEe9IsUVVaEgqKmPDshWdRrhbH86gLcB_G8KtYJHVoJRjq8SA0Tiht3P2IbRl')`
-          }}
-        />
-        <div className={styles.bgOverlay} />
+export default function Hero() {
+  return <section className={styles.section}>
+    <div className={styles.content}>
+      <div className={styles.copy}>
+        <span className={styles.eyebrow}><Sparkles size={15} /> LITTLE OUTFITS. BIG MEMORIES.</span>
+        <h1>Big smiles<br />start with <em>little</em><br />outfits.</h1>
+        <p>Everyday comfort and occasion-ready looks for boys aged 1–14. Thoughtfully picked for your little one.</p>
+        <div className={styles.ctas}><Link to="/shop" className={styles.primary}>Shop new arrivals <ArrowRight size={17} /></Link><Link to="/shop?category=Kurta%20Sets" className={styles.secondary}>Explore festive wear</Link></div>
+        <div className={styles.note}><span>✦</span> Soft fabrics · Happy little moments</div>
       </div>
-
-      {/* Content */}
-      <div className={styles.content}>
-        <div className={styles.textBlock}>
-          <h1 className={styles.headline}>OWN YOUR<br />EVERYDAY</h1>
-          <p className={styles.subtext}>
-            Premium essentials built for everyday movement. Engineered for the modern urban environment.
-          </p>
-          <div className={styles.ctaRow}>
-            <Link to="/shop?category=Tops" className={styles.ctaPrimary}>
-              SHOP T-SHIRTS
-            </Link>
-            <Link to="/shop" className={styles.ctaSecondary}>
-              EXPLORE NEW ARRIVALS
-            </Link>
-          </div>
-        </div>
+      <div className={styles.visual}>
+        <img src="https://images.unsplash.com/photo-1519238263530-99bdd11df2ea?auto=format&fit=crop&w=1100&q=90" alt="Little boy dressed for a happy day out" />
+        <div className={styles.imageNote}><b>Made for play.</b><span>Ready for every little adventure.</span></div>
+        <div className={styles.saleTag}>New season<br /><strong>up to 40% off</strong></div>
       </div>
-    </section>
-  );
-};
-
-export default Hero;
+    </div>
+    <div className={styles.dots}><i /><i /><i /><span>01 / 03</span></div>
+  </section>;
+}

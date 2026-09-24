@@ -1,84 +1,13 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { ArrowRight, Heart, Smartphone } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
-import styles from './RegisterPage.module.css';
+import styles from './LoginPage.module.css';
 
-const RegisterPage = () => {
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const { register, loading, error } = useAuth();
-  const navigate = useNavigate();
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const res = await register(name, email, password);
-    if (res.success) navigate('/orders');
-  };
-
-  return (
-    <main className={styles.page}>
-      <div className={styles.card}>
-
-        <div className={styles.cardHeader}>
-          <span className={`material-symbols-outlined text-4xl ${styles.headerIcon}`}>person_add</span>
-          <h1 className={styles.cardTitle}>CREATE ACCOUNT</h1>
-          <p className={styles.cardSubtitle}>JOIN URBAN KINETIC FOR DROP NOTIFICATIONS &amp; ACCESS</p>
-        </div>
-
-        {error && (
-          <div className={styles.errorBox}>{error}</div>
-        )}
-
-        <form onSubmit={handleSubmit} className={styles.form}>
-          <div className={styles.fieldGroup}>
-            <label className={styles.label}>FULL NAME</label>
-            <input
-              type="text"
-              required
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              className={styles.input}
-              placeholder="e.g. Deepak Gopika"
-            />
-          </div>
-
-          <div className={styles.fieldGroup}>
-            <label className={styles.label}>EMAIL ADDRESS</label>
-            <input
-              type="email"
-              required
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              className={styles.input}
-              placeholder="name@domain.com"
-            />
-          </div>
-
-          <div className={styles.fieldGroup}>
-            <label className={styles.label}>PASSWORD</label>
-            <input
-              type="password"
-              required
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              className={styles.input}
-              placeholder="At least 6 characters"
-            />
-          </div>
-
-          <button type="submit" disabled={loading} className={styles.submitBtn}>
-            {loading ? 'REGISTERING ACCESS...' : 'JOIN KINETIC ARCHIVE'}
-          </button>
-        </form>
-
-        <div className={styles.footer}>
-          ALREADY REGISTERED?{' '}
-          <Link to="/login" className={styles.footerLink}>LOG IN</Link>
-        </div>
-      </div>
-    </main>
-  );
-};
-
-export default RegisterPage;
+export default function RegisterPage(){
+  const [phone,setPhone]=useState(''); const [otp,setOtp]=useState(''); const [sent,setSent]=useState(false); const [name,setName]=useState(''); const [email,setEmail]=useState(''); const [password,setPassword]=useState('');
+  const {register,loading,error}=useAuth(); const navigate=useNavigate();
+  const sendOtp=e=>{e.preventDefault();if(/^\d{10}$/.test(phone))setSent(true);};
+  const createAccount=async e=>{e.preventDefault();if(otp!=='123456')return;const result=await register(name,email,password);if(result.success)navigate('/orders');};
+  return <main className={styles.page}><section className={styles.card}><div className={styles.illustration}><div><span>ln</span><b>little namma</b></div><p>A little more<br/>joy in every day.</p><small>BOYS · 1–14 YEARS</small></div><div className={styles.formPanel}><span className={styles.eyebrow}>JOIN OUR LITTLE WORLD</span><h1>Create your account.</h1><p className={styles.subtitle}>Save your little one’s favourites and keep up with every order.</p>{error&&<div className={styles.error}>{error}</div>}{!sent?<form onSubmit={sendOtp}><label>Mobile number<div className={styles.phone}><span>+91</span><input type="tel" required value={phone} onChange={e=>setPhone(e.target.value.replace(/\D/g,'').slice(0,10))} placeholder="10-digit mobile number" inputMode="numeric"/></div></label><button className={styles.submit}>Send OTP <ArrowRight size={17}/></button></form>:<form onSubmit={createAccount}><div className={styles.sent}><Smartphone size={18}/> OTP sent to +91 {phone}</div><label>6-digit OTP<input className={styles.otp} required maxLength={6} inputMode="numeric" value={otp} onChange={e=>setOtp(e.target.value.replace(/\D/g,'').slice(0,6))} placeholder="Demo OTP: 123456"/></label><label>Parent / guardian name<input required value={name} onChange={e=>setName(e.target.value)} placeholder="Your name"/></label><label>Email address<input required type="email" value={email} onChange={e=>setEmail(e.target.value)} placeholder="name@example.com"/></label><label>Create password<input required type="password" minLength={6} value={password} onChange={e=>setPassword(e.target.value)} placeholder="At least 6 characters"/></label><button className={styles.submit} disabled={loading}>{loading?'Creating account…':'Verify & create account'} <ArrowRight size={17}/></button><button type="button" className={styles.textButton} onClick={()=>setSent(false)}>Change mobile number</button></form>}<p className={styles.privacy}><Heart size={13}/> Your details stay safe with us.</p><div className={styles.bottom}>Already a member? <Link to="/login">Sign in</Link></div></div></section></main>;
+}

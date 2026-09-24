@@ -1,63 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { Instagram, Facebook, CreditCard, Heart } from 'lucide-react';
 import styles from './Footer.module.css';
 
-const Footer = () => {
-  return (
-    <footer className={styles.footer}>
-      <div className={styles.footerGrid}>
-
-        {/* Brand Column */}
-        <div className="col-span-1 md:col-span-1 flex flex-col">
-          <Link to="/" className={styles.brand}>URBAN KINETIC</Link>
-          <p className={styles.brandDesc}>Engineered for movement. Designed for the streets.</p>
-          <div className={styles.socialRow}>
-            <a href="#" className={styles.socialLink} aria-label="Share">
-              <span className="material-symbols-outlined">share</span>
-            </a>
-            <a href="#" className={styles.socialLink} aria-label="Instagram">
-              <span className="material-symbols-outlined">photo_camera</span>
-            </a>
-          </div>
-        </div>
-
-        {/* Shop Column */}
-        <div className={styles.col}>
-          <h4 className={styles.colHeading}>Shop</h4>
-          <Link to="/shop" className={styles.colLink}>Shop</Link>
-          <Link to="/shop" className={styles.colLink}>Collection</Link>
-          <Link to="/shop?tag=collaboration" className={styles.colLink}>Collaboration</Link>
-          <Link to="/shop?sale=true" className={styles.colLink}>Sale</Link>
-        </div>
-
-        {/* Support Column */}
-        <div className={styles.col}>
-          <h4 className={styles.colHeading}>Support</h4>
-          <a href="#" className={styles.colLink}>Customer Care</a>
-          <Link to="/orders" className={styles.colLink}>Account</Link>
-          <a href="#" className={styles.colLink}>Returns</a>
-          <a href="#" className={styles.colLink}>Size Guide</a>
-        </div>
-
-        {/* Legal Column */}
-        <div className={styles.col}>
-          <h4 className={styles.colHeading}>Legal</h4>
-          <a href="#" className={styles.colLink}>Company</a>
-          <a href="#" className={styles.colLink}>Privacy Policy</a>
-          <a href="#" className={styles.colLink}>Terms of Service</a>
-        </div>
-      </div>
-
-      {/* Bottom Bar */}
-      <div className={styles.bottomBar}>
-        <span className={styles.copyright}>© 2024 URBAN KINETIC. ALL RIGHTS RESERVED.</span>
-        <div className={styles.locale}>
-          <span className="material-symbols-outlined text-sm">public</span>
-          <span className={styles.localeText}>Global (EN)</span>
-        </div>
-      </div>
-    </footer>
-  );
-};
-
-export default Footer;
+export default function Footer(){return <footer className={styles.footer}><div className={styles.top}><div className={styles.brandCol}><Link to="/" className={styles.brand}><span>ln</span> little<span>namma</span></Link><p>Little outfits for big little adventures. Thoughtful boyswear for ages 1–14.</p><div className={styles.social}><a href="https://instagram.com" aria-label="Instagram"><Instagram/></a><a href="https://facebook.com" aria-label="Facebook"><Facebook/></a></div></div><div><h3>Shop</h3><Link to="/shop">All boyswear</Link><Link to="/shop?category=Kurta%20Sets">Kurta sets</Link><Link to="/shop?category=Casual%20Wear">Casual wear</Link><Link to="/shop?category=School%20Wear">School wear</Link></div><div><h3>Help & info</h3><Link to="/contact">Contact us</Link><Link to="/faq">FAQs</Link><Link to="/shipping-returns">Shipping & returns</Link><Link to="/size-guide">Size guide</Link><Link to="/orders">My orders</Link></div><div><h3>Little Namma</h3><Link to="/about">About us</Link><Link to="/account">My account</Link><Link to="/wishlist">Wishlist</Link><Link to="/privacy">Privacy policy</Link><Link to="/terms">Terms of service</Link></div></div><div className={styles.bottom}><span>© 2026 Little Namma · Made for little moments in India</span><div><CreditCard/><span>UPI · Cards · COD</span><Heart/></div></div></footer>;}

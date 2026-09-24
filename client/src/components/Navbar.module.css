@@ -1,127 +1,29 @@
-/* ============================================
-   Navbar.module.css
-   ============================================ */
-
-/* Desktop nav wrapper */
-.nav {
-  @apply fixed top-0 w-full z-50 bg-surface/80 backdrop-blur-md border-b border-outline-variant;
-}
-
-.navInner {
-  @apply hidden md:flex justify-between items-center h-20 px-margin-desktop max-w-[1440px] mx-auto;
-}
-
-.brand {
-  @apply font-display text-headline-md font-black tracking-tighter text-on-surface hover:text-primary transition-colors duration-200;
-}
-
-.navLinks {
-  @apply flex gap-8 font-body-lg text-body-lg uppercase font-bold list-none;
-}
-
-.navLink {
-  @apply text-on-surface hover:text-primary transition-colors duration-200;
-}
-
-.navLinkActive {
-  @apply text-primary border-b-2 border-primary;
-}
-
-/* Right icon row */
-.iconRow {
-  @apply flex items-center gap-6 text-on-surface;
-}
-
-.iconBtn {
-  @apply hover:text-primary transition-colors duration-200 active:scale-95 relative;
-}
-
-/* Search form */
-.searchForm {
-  @apply flex items-center border-b border-on-surface bg-transparent px-2 gap-2;
-}
-
-.searchInput {
-  @apply bg-transparent border-none outline-none font-body text-xs text-on-surface uppercase w-40 py-1;
-}
-
-/* Cart badge */
-.cartBadge {
-  @apply absolute -top-2 -right-2 bg-brand-orange text-white font-bold text-[10px] w-5 h-5 rounded-full flex items-center justify-center border border-white;
-}
-
-/* Account row */
-.accountRow {
-  @apply flex items-center gap-3;
-}
-
-.accountLink {
-  @apply hover:text-primary transition-colors duration-200 flex items-center gap-1;
-}
-
-.userLabel {
-  @apply hidden xl:inline font-label-bold text-xs;
-}
-
-/* ── Mobile Header ── */
-.mobileHeader {
-  @apply md:hidden flex justify-between items-center h-16 px-5 fixed top-0 w-full z-50 bg-surface/90 backdrop-blur-md border-b border-outline-variant;
-}
-
-.mobileIconGroup {
-  @apply flex items-center gap-4;
-}
-
-.mobileBadge {
-  @apply absolute -top-2 -right-2 bg-brand-orange text-white font-bold text-[10px] w-4 h-4 rounded-full flex items-center justify-center;
-}
-
-/* Mobile Search Bar */
-.mobileSearch {
-  @apply md:hidden fixed top-16 left-0 w-full z-40 bg-surface border-b border-outline-variant px-5 py-3;
-}
-
-.mobileSearchForm {
-  @apply flex items-center gap-3;
-}
-
-.mobileSearchInput {
-  @apply flex-1 bg-transparent border-none outline-none font-body text-sm text-on-surface uppercase;
-}
-
-/* ── Mobile Drawer ── */
-.drawer {
-  @apply fixed inset-0 top-16 z-40 bg-surface flex flex-col justify-between p-6 md:hidden animate-fade-in;
-}
-
-.drawerLinks {
-  @apply flex flex-col gap-8 font-display text-4xl;
-}
-
-.drawerLink {
-  @apply text-on-surface hover:text-primary transition-colors border-b border-outline-variant pb-4;
-}
-
-.drawerFooter {
-  @apply flex flex-col gap-4 border-t border-outline-variant pt-6 font-label-bold text-label-bold;
-}
-
-.drawerFooterLink {
-  @apply flex items-center gap-3 text-on-surface text-lg;
-}
-
-.drawerFooterLogout {
-  @apply flex items-center gap-3 text-primary text-lg text-left;
-}
-
-.drawerAuthGrid {
-  @apply grid grid-cols-2 gap-4;
-}
-
-.drawerLoginBtn {
-  @apply border border-on-surface text-on-surface text-center py-4 font-label-bold text-xs uppercase hover:bg-on-surface hover:text-surface transition-colors;
-}
-
-.drawerSignupBtn {
-  @apply bg-brand-orange text-white text-center py-4 font-label-bold text-xs uppercase hover:bg-primary-container transition-colors;
-}
+.announcement { padding:8px 16px; text-align:center; background:#4C1D95; color:#fff; font-size:12px; font-weight:600; letter-spacing:.02em; }
+.announcement span { color:#A78BFA; margin:0 8px; }
+.header { position:sticky; top:0; z-index:50; background:#fff; box-shadow:0 3px 16px rgba(76,29,149,.08); }
+.mainRow { max-width:1440px; height:82px; margin:auto; padding:0 28px; display:flex; align-items:center; gap:28px; }
+.brand { display:flex; align-items:center; gap:9px; min-width:190px; text-decoration:none; color:#4C1D95; font-size:23px; line-height:.95; font-weight:800; letter-spacing:-1.2px; }
+.brandAccent { color:#6D28D9; }
+.brand small { display:block; margin-top:6px; color:#6b6475; font-size:9px; letter-spacing:1.5px; font-weight:700; }
+.brandMark { display:grid; place-items:center; width:42px; height:42px; border-radius:14px; background:#6D28D9; color:#fff; font-size:19px; font-weight:900; letter-spacing:-2px; }
+.search { height:44px; display:flex; align-items:center; gap:10px; flex:1; max-width:570px; padding:0 12px; border:1px solid #ddd6e8; border-radius:999px; background:#F5F3FF; color:#6b6475; }
+.search input { width:100%; border:0; outline:0; background:transparent; font:inherit; color:#30283a; }
+.search button,.menuButton { display:none; border:0; background:transparent; color:#4C1D95; }
+.actions { margin-left:auto; display:flex; align-items:center; gap:20px; }
+.location,.language { display:flex; align-items:center; gap:7px; border:0; background:none; color:#4C1D95; cursor:pointer; font:inherit; }
+.location { text-align:left; }
+.location small { display:block; color:#776d82; font-size:10px; }
+.location span { font-size:12px; font-weight:700; }
+.actionLink { display:flex; flex-direction:column; align-items:center; gap:3px; color:#4C1D95; text-decoration:none; font-size:11px; font-weight:600; }
+.actionLink svg { width:20px; height:20px; }
+.bag { position:relative; }
+.bag b { position:absolute; right:-9px; top:-8px; display:grid; place-items:center; min-width:17px; height:17px; padding:0 4px; border-radius:99px; background:#6D28D9; color:white; font-size:10px; }
+.categoryNav { max-width:1440px; margin:auto; padding:0 28px; min-height:42px; display:flex; align-items:center; justify-content:center; gap:clamp(14px,2.4vw,36px); border-top:1px solid #f1edf6; }
+.categoryNav a { white-space:nowrap; color:#4b4356; text-decoration:none; font-size:12px; font-weight:600; transition:color .2s; }
+.categoryNav a:hover { color:#6D28D9; }
+.pinPanel { position:absolute; z-index:2; right:240px; top:70px; display:flex; align-items:center; gap:8px; padding:16px; border:1px solid #ddd6e8; border-radius:16px; background:white; box-shadow:0 8px 28px #4c1d951c; color:#4C1D95; }
+.pinPanel label { font-size:12px; font-weight:700; }
+.pinPanel input { width:128px; border:1px solid #ddd6e8; border-radius:999px; padding:9px 12px; font:inherit; }
+.pinPanel button { border:0; border-radius:999px; padding:10px 16px; background:#6D28D9; color:white; font-weight:700; }
+@media(max-width:1050px) { .mainRow { gap:16px; padding:0 20px; } .brand { min-width:165px; } .actions { gap:12px; } .location { display:none; } .categoryNav { gap:15px; padding:0 16px; overflow:auto; justify-content:flex-start; } }
+@media(max-width:720px) { .announcement { font-size:10px; padding:8px 5px; } .announcement span { margin:0 3px; } .mainRow { height:auto; min-height:66px; padding:10px 16px; display:grid; grid-template-columns:32px 1fr auto; gap:10px; } .menuButton { display:block; padding:4px; } .brand { min-width:0; font-size:19px; } .brandMark { width:36px; height:36px; border-radius:12px; } .brand small { font-size:8px; } .search { grid-row:2; grid-column:1 / -1; max-width:none; height:40px; } .search button { display:block; } .search>svg { display:none; } .actions { gap:12px; } .actions .actionLink { font-size:0; } .actions .actionLink svg { width:21px; height:21px; } .language { font-size:10px; gap:3px; } .language svg { width:16px; } .categoryNav { display:none; padding:8px 16px 14px; white-space:normal; flex-wrap:wrap; gap:8px; } .categoryNavOpen { display:flex; } .categoryNav a { padding:8px 12px; border-radius:999px; background:#F5F3FF; } .pinPanel { top:62px; right:12px; left:12px; flex-wrap:wrap; } }

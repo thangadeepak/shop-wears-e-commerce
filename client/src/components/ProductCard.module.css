@@ -1,98 +1,13 @@
-/* ============================================
-   ProductCard.module.css
-   ============================================ */
-
-.card {
-  @apply relative flex flex-col cursor-pointer;
-}
-
-/* ── Image Area ── */
-.imageWrapper {
-  @apply relative w-full aspect-[3/4] bg-surface-container-high overflow-hidden border border-outline/20;
-}
-
-.badges {
-  @apply absolute top-4 left-4 z-10 flex flex-col gap-2;
-}
-
-.badgeNew {
-  @apply bg-surface text-on-surface px-3 py-1 font-label-bold text-[10px] uppercase tracking-widest border border-outline;
-}
-
-.badgeSale {
-  @apply bg-brand-orange text-white px-3 py-1 font-label-bold text-[10px] uppercase tracking-widest;
-}
-
-.wishlistBtn {
-  @apply absolute top-4 right-4 z-10 text-on-surface bg-surface/50 p-2 backdrop-blur hover:text-primary hover:bg-surface transition-all;
-}
-
-.mainImg {
-  @apply w-full h-full object-cover transition-transform duration-700;
-}
-
-.hoverImg {
-  @apply w-full h-full object-cover transition-transform duration-700;
-}
-
-/* Quick Add Overlay */
-.quickAdd {
-  @apply absolute bottom-0 left-0 w-full p-4 translate-y-full opacity-0 transition-all duration-300 ease-out bg-surface/90 backdrop-blur border-t border-outline;
-}
-
-.card:hover .mainImg {
-  @apply scale-105;
-}
-
-.card:hover .quickAdd {
-  @apply translate-y-0 opacity-100;
-}
-
-.quickAddLabel {
-  @apply text-center font-label-bold text-[12px] uppercase mb-3 text-on-surface;
-}
-
-.quickAddSizes {
-  @apply flex justify-between gap-2;
-}
-
-.sizeBtn {
-  @apply flex-1 border border-outline py-2 hover:bg-primary hover:text-on-primary hover:border-primary transition-colors font-label-bold text-sm;
-}
-
-/* ── Product Info ── */
-.info {
-  @apply pt-4 flex flex-col gap-1;
-}
-
-.infoRow {
-  @apply flex justify-between items-start;
-}
-
-.title {
-  @apply font-body text-base font-bold uppercase text-on-surface leading-tight flex-1 mr-2;
-}
-
-.priceCol {
-  @apply flex flex-col items-end shrink-0;
-}
-
-.priceOriginal {
-  @apply font-body text-sm text-on-surface-variant line-through;
-}
-
-.price {
-  @apply font-price-display text-[18px] text-on-surface;
-}
-
-.category {
-  @apply font-body text-sm text-on-surface-variant uppercase;
-}
-
-.rating {
-  @apply flex items-center gap-1 mt-1;
-}
-
-.ratingText {
-  @apply font-body text-xs text-on-surface-variant;
-}
+.card { overflow:hidden; border:1px solid #e6e0ed; border-radius:16px; background:#fff; box-shadow:0 4px 16px rgba(76,29,149,.07); cursor:pointer; transition:transform .22s,box-shadow .22s; }
+.card:hover,.card:focus-visible { transform:translateY(-3px); box-shadow:0 9px 22px rgba(76,29,149,.13); outline:0; }
+.imageWrapper { position:relative; aspect-ratio:4/4.6; overflow:hidden; background:#F5F3FF; }
+.imageWrapper img { width:100%; height:100%; object-fit:cover; display:block; transition:transform .35s; }.card:hover .imageWrapper img { transform:scale(1.035); }
+.saleBadge { position:absolute; left:10px; top:10px; padding:6px 9px; border-radius:999px; background:#6D28D9; color:#fff; font-size:9px; font-weight:800; letter-spacing:.03em; }
+.wishlistBtn { position:absolute; right:10px; top:10px; display:grid; place-items:center; width:34px; height:34px; border:1px solid #e6e0ed; border-radius:50%; background:#fff; color:#6D28D9; cursor:pointer; }.saved { background:#EDE9FE; }
+.info { padding:13px 13px 14px; }
+.meta { display:flex; align-items:center; justify-content:space-between; color:#7e748b; font-size:9px; }.age { padding:4px 7px; border-radius:999px; background:#F5F3FF; color:#4C1D95; font-weight:700; }
+.title { min-height:36px; margin:7px 0 4px; color:#352a43; font-family:'Inter',sans-serif; font-size:12px; font-weight:700; line-height:1.45; }
+.rating { display:flex; align-items:center; gap:4px; margin:6px 0; color:#6D28D9; font-size:10px; }.rating span { color:#8a8195; }
+.priceRow { display:flex; align-items:center; flex-wrap:wrap; gap:6px; margin-top:8px; }.price { color:#30125f; font-size:14px; }.priceRow del { color:#9b94a4; font-size:10px; }.priceRow>span { color:#6D28D9; font-size:9px; font-weight:750; }
+.quickAdd { width:100%; min-height:36px; margin-top:12px; display:flex; align-items:center; justify-content:center; gap:7px; border:0; border-radius:999px; background:#6D28D9; color:#fff; font:inherit; font-size:11px; font-weight:750; cursor:pointer; transition:background .2s; }.quickAdd:hover { background:#4C1D95; }
+@media(max-width:600px) { .info { padding:10px; }.title { font-size:11px; min-height:32px; }.imageWrapper { aspect-ratio:4/4.4; }.quickAdd { min-height:34px; margin-top:9px; } }

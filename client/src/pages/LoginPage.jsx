@@ -1,71 +1,15 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { ArrowRight, LockKeyhole, Smartphone } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 import styles from './LoginPage.module.css';
 
-const LoginPage = () => {
-  const [email, setEmail] = useState('user@urbankinetic.com');
-  const [password, setPassword] = useState('123456');
-  const { login, loading, error } = useAuth();
-  const navigate = useNavigate();
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const res = await login(email, password);
-    if (res.success) navigate('/orders');
-  };
-
-  return (
-    <main className={styles.page}>
-      <div className={styles.card}>
-
-        <div className={styles.cardHeader}>
-          <span className={`material-symbols-outlined text-4xl ${styles.headerIcon}`}>person</span>
-          <h1 className={styles.cardTitle}>ACCOUNT ACCESS</h1>
-          <p className={styles.cardSubtitle}>ENTER CREDENTIALS TO ACCESS YOUR KINETIC PROFILE</p>
-        </div>
-
-        {error && (
-          <div className={styles.errorBox}>{error}</div>
-        )}
-
-        <form onSubmit={handleSubmit} className={styles.form}>
-          <div className={styles.fieldGroup}>
-            <label className={styles.label}>EMAIL ADDRESS</label>
-            <input
-              type="email"
-              required
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              className={styles.input}
-              placeholder="name@domain.com"
-            />
-          </div>
-
-          <div className={styles.fieldGroup}>
-            <label className={styles.label}>PASSWORD</label>
-            <input
-              type="password"
-              required
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              className={styles.input}
-              placeholder="••••••••"
-            />
-          </div>
-
-          <button type="submit" disabled={loading} className={styles.submitBtn}>
-            {loading ? 'AUTHENTICATING...' : 'LOG IN TO ACCOUNT'}
-          </button>
-        </form>
-
-        <div className={styles.footer}>
-          NEW TO URBAN KINETIC?{' '}
-          <Link to="/register" className={styles.footerLink}>CREATE AN ACCOUNT</Link>
-        </div>
-      </div>
-    </main>
-  );
-};
-
-export default LoginPage;
+export default function LoginPage(){
+  const [phone,setPhone]=useState(''); const [otp,setOtp]=useState(''); const [sent,setSent]=useState(false); const [demoOtp,setDemoOtp]=useState(false);
+  const [emailMode,setEmailMode]=useState(false); const [email,setEmail]=useState(''); const [password,setPassword]=useState('');
+  const {login,loading,error}=useAuth(); const navigate=useNavigate();
+  const submitPhone=e=>{e.preventDefault();if(/^\d{10}$/.test(phone)){setSent(true);setDemoOtp(true);}};
+  const verifyOtp=e=>{e.preventDefault();if(otp==='123456')navigate('/orders');};
+  const emailLogin=async e=>{e.preventDefault();const result=await login(email,password);if(result.success)navigate('/orders');};
+  return <main className={styles.page}><section className={styles.card}><div className={styles.illustration}><div><span>ln</span><b>little namma</b></div><p>Little outfits for<br/>big little adventures.</p><small>BOYS · 1–14 YEARS</small></div><div className={styles.formPanel}><span className={styles.eyebrow}>WELCOME BACK</span><h1>Good to see you.</h1><p className={styles.subtitle}>Sign in to pick up right where your little one left off.</p>{error&&<div className={styles.error}>{error}</div>}{emailMode?<form onSubmit={emailLogin}><label>Email address<input type="email" required value={email} onChange={e=>setEmail(e.target.value)} placeholder="name@example.com"/></label><label>Password<input type="password" required value={password} onChange={e=>setPassword(e.target.value)} placeholder="Your password"/></label><button className={styles.submit} disabled={loading}>{loading?'Signing in…':'Sign in'} <ArrowRight size={17}/></button></form>:!sent?<form onSubmit={submitPhone}><label>Mobile number<div className={styles.phone}><span>+91</span><input type="tel" required value={phone} onChange={e=>setPhone(e.target.value.replace(/\D/g,'').slice(0,10))} placeholder="10-digit mobile number" inputMode="numeric"/></div></label><button className={styles.submit}>Continue with OTP <ArrowRight size={17}/></button><p className={styles.privacy}><LockKeyhole size={13}/> We’ll only use your number for account access and order updates.</p></form>:<form onSubmit={verifyOtp}><div className={styles.sent}><Smartphone size={18}/> OTP sent to +91 {phone}</div><label>Enter 6-digit OTP<input className={styles.otp} inputMode="numeric" maxLength={6} value={otp} onChange={e=>setOtp(e.target.value.replace(/\D/g,'').slice(0,6))} placeholder="• • • • • •" autoFocus/></label>{demoOtp&&<small className={styles.demo}>Demo OTP: 123456</small>}<button className={styles.submit}>Verify & continue <ArrowRight size={17}/></button><button type="button" className={styles.textButton} onClick={()=>setSent(false)}>Change mobile number</button></form>}<button type="button" className={styles.textButton} onClick={()=>setEmailMode(!emailMode)}>{emailMode?'Use mobile OTP instead':'Sign in with email and password'}</button><div className={styles.bottom}>New to Little Namma? <Link to="/register">Create an account</Link></div></div></section></main>;
+}

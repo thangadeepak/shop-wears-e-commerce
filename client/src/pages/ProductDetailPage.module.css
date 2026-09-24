@@ -104,7 +104,8 @@
 }
 
 .ratingIcon {
-  @apply fill text-lg text-primary;
+  @apply text-lg text-primary;
+  font-variation-settings: 'FILL' 1;
 }
 
 .ratingIconHalf {
@@ -279,3 +280,25 @@
 .modalCloseBtn {
   @apply w-full bg-brand-orange text-white py-3 text-sm uppercase font-label-bold tracking-widest hover:bg-primary-container transition-colors mt-6;
 }
+.page { color:#30283a; }
+.mainImage,.thumbnailBtn,.details,.accordionItem,.modal,.sizeBtn,.colorBtn { border-radius:16px; }
+.mainImage,.details,.accordionItem,.modal { border-color:#e6e0ed; }
+.productTitle,.modalTitle,.notFoundTitle { font-family:'Poppins',sans-serif; text-transform:none; color:#35126d; }
+.sizeBtnActive,.addToCartBtn,.modalCloseBtn { background:#6D28D9; border-color:#6D28D9; color:#fff; border-radius:999px; }
+.sizeGuideBtn,.wishlistBtn { color:#6D28D9; }
+.discount { color:#6D28D9; font-weight:800; font-size:12px; }
+.taxNote { color:#766d81; font-size:11px; }
+.deliveryCheck { margin:17px 0; padding:16px; border:1px solid #e6e0ed; border-radius:16px; background:#F5F3FF; }
+.offerBox { margin:14px 0; padding:14px; display:flex; flex-direction:column; gap:6px; border:1px solid #ddd6e8; border-radius:16px; background:#F5F3FF; color:#766d81; font-size:10px; }.offerBox strong { color:#4C1D95; font-size:12px; }
+.deliveryCheck label { display:block; margin-bottom:9px; color:#4C1D95; font-size:11px; font-weight:750; }
+.deliveryCheck>div { display:flex; gap:8px; }
+.deliveryCheck input { width:100%; min-width:0; height:40px; padding:0 13px; border:1px solid #ddd6e8; border-radius:999px; background:#fff; font:inherit; font-size:12px; }
+.deliveryCheck button { padding:0 17px; border:0; border-radius:999px; background:#6D28D9; color:#fff; font-size:11px; font-weight:750; }
+.deliveryCheck small { display:block; margin-top:8px; color:#4C1D95; font-size:10px; }
+.buyNowBtn { min-height:48px; padding:0 20px; border:1px solid #6D28D9; border-radius:999px; background:#fff; color:#6D28D9; font-size:12px; font-weight:800; }
+.buyNowBtn:hover { background:#EDE9FE; }
+.recommendations,.fitFeedback { width:min(1260px,calc(100% - 40px)); margin:40px auto 0; }
+.recommendationHeader>span { color:#6D28D9; font-size:10px; font-weight:800; letter-spacing:.13em; }.recommendationHeader h2 { margin:5px 0 17px; color:#35126d; font-family:'Poppins',sans-serif; font-size:28px; }
+.recommendationGrid { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:16px; }
+.fitFeedback { padding:20px; border:1px solid #e6e0ed; border-radius:16px; background:#F5F3FF; }.fitFeedback h3 { margin:0 0 12px; color:#4C1D95; font-size:14px; }.fitFeedback>div { display:flex; flex-wrap:wrap; gap:8px; }.fitFeedback button { min-height:36px; padding:0 14px; border:1px solid #d9ccef; border-radius:999px; background:white; color:#6D28D9; font-size:11px; }.fitSelected { background:#6D28D9!important; color:white!important; }
+@media(max-width:700px) { .recommendationGrid { grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px; }.recommendations,.fitFeedback { width:calc(100% - 30px); } }

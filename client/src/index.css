@@ -1,88 +1,47 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:FILL@0&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Anton&family=Chivo:ital,wght@0,300;0,400;0,700;0,900;1,400&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap');
-
-@layer base {
-  :root {
-    --font-display: 'Anton', sans-serif;
-    --font-body: 'Chivo', sans-serif;
-  }
-
-  * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-  }
-
-  body {
-    font-family: var(--font-body);
-    background-color: #fcf9f8;
-    color: #1b1b1c;
-    min-height: 100vh;
-    overflow-x: hidden;
-    line-height: 1.5;
-    -webkit-font-smoothing: antialiased;
-  }
-
-  h1, h2, h3, h4, h5, h6 {
-    font-family: var(--font-display);
-    text-transform: uppercase;
-  }
-
-  /* Custom Scrollbar */
-  ::-webkit-scrollbar { width: 6px; }
-  ::-webkit-scrollbar-track { background: #fcf9f8; }
-  ::-webkit-scrollbar-thumb { background: #916f65; }
-  ::-webkit-scrollbar-thumb:hover { background: #aa3000; }
+:root {
+  --purple-primary:#6D28D9;
+  --purple-dark:#4C1D95;
+  --purple-light:#A78BFA;
+  --purple-tint:#F5F3FF;
+  --purple-soft:#EDE9FE;
+  --text:#30283a;
+  --text-muted:#766d81;
+  --border:#e6e0ed;
+  --font-heading:'Poppins',sans-serif;
+  --font-body:'Inter',sans-serif;
+  font-family:var(--font-body);
+  color:var(--text);
+  background:#fff;
+  font-synthesis:none;
+  text-rendering:optimizeLegibility;
+  -webkit-font-smoothing:antialiased;
 }
-
-@layer components {
-  /* Material Symbols */
-  .material-symbols-outlined {
-    font-family: 'Material Symbols Outlined';
-    font-weight: normal;
-    font-style: normal;
-    font-size: 24px;
-    display: inline-block;
-    line-height: 1;
-    text-transform: none;
-    letter-spacing: normal;
-    word-wrap: normal;
-    white-space: nowrap;
-    direction: ltr;
-    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
-  }
-
-  .material-symbols-outlined.fill {
-    font-variation-settings: 'FILL' 1;
-  }
-
-  /* Quick Add Overlay Animation */
-  .quick-add-overlay {
-    transform: translateY(100%);
-    transition: transform 0.3s ease;
-  }
-  .group:hover .quick-add-overlay {
-    transform: translateY(0);
-  }
-
-  /* Hover image swap */
-  .group-hover-img { display: none; }
-  .group:hover .group-hover-img { display: block; }
-  .group:hover .group-main-img { display: none; }
-
-  /* Hover lift */
-  .hover-lift {
-    transition: transform 0.2s ease;
-  }
-  .hover-lift:hover {
-    transform: scale(1.02);
-  }
-
-  /* No scrollbar */
-  .no-scrollbar::-webkit-scrollbar { display: none; }
-  .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
-}
+* { box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body { margin:0; min-width:320px; min-height:100vh; overflow-x:hidden; background:#fff; color:var(--text); font-family:var(--font-body); line-height:1.5; }
+button,input,select,textarea { font:inherit; }
+button,a { -webkit-tap-highlight-color:transparent; }
+button { cursor:pointer; }
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible { outline:3px solid var(--purple-light); outline-offset:2px; }
+h1,h2,h3,h4,h5,h6 { font-family:var(--font-heading); letter-spacing:-.035em; }
+::selection { background:var(--purple-soft); color:var(--purple-dark); }
+::-webkit-scrollbar { width:8px; }
+::-webkit-scrollbar-thumb { background:var(--purple-light); border-radius:99px; }
+::-webkit-scrollbar-track { background:var(--purple-tint); }
+.material-symbols-outlined { font-family:'Material Symbols Outlined'; font-weight:normal; font-style:normal; font-size:1em; line-height:1; letter-spacing:normal; text-transform:none; display:inline-block; white-space:nowrap; direction:ltr; font-feature-settings:'liga'; -webkit-font-feature-settings:'liga'; -webkit-font-smoothing:antialiased; }
+.whatsapp-support { position:fixed; z-index:60; right:20px; bottom:20px; width:52px; height:52px; display:grid; place-items:center; border:1px solid #ddd6e8; border-radius:50%; background:var(--purple-primary); color:white; box-shadow:0 6px 20px #4c1d9530; text-decoration:none; }
+.whatsapp-support svg { width:23px; height:23px; }
+.store-toast { position:fixed; z-index:100; top:142px; right:22px; max-width:calc(100vw - 36px); padding:12px 18px; border:1px solid #ddd6e8; border-radius:16px; background:#4C1D95; color:#fff; box-shadow:0 8px 24px #4c1d9530; font-size:12px; font-weight:650; animation:toast-in .22s ease-out; }
+@keyframes toast-in { from { opacity:0; transform:translateY(-8px); } to { opacity:1; transform:translateY(0); } }
+.brutalist-border { border-color:var(--border)!important; border-radius:16px!important; box-shadow:0 4px 16px rgba(76,29,149,.07)!important; }
+.brutalist-input { border-color:var(--border)!important; border-radius:16px!important; }
+.brutalist-button { border:0!important; border-radius:999px!important; background:var(--purple-primary)!important; color:white!important; box-shadow:none!important; }
+.brutalist-button:hover { background:var(--purple-dark)!important; }
+.brutalist-ghost { border:1px solid #d8ccef!important; border-radius:999px!important; background:white!important; color:var(--purple-dark)!important; }
+@media(max-width:600px) { .whatsapp-support { right:14px; bottom:14px; width:48px; height:48px; } }
